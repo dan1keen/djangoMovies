@@ -1,0 +1,10 @@
+{% extends  "main/wrapper.html"%}
+{% block content %}
+    {% for genre in genres %}
+        <a href="/news/{{post.id}}"><h3>{{genre.title}}</h3></a>
+<div class="d-flex">
+        <h5 class=" mr-auto p2">{{post.date|date:"d-m-Y"}}</h5>
+        <h5 class=" p-2">{{post.date|date:"d-m-Y"}}</h5>
+</div>
+    {% endfor %}
+{% endblock %}

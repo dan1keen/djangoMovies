@@ -1,0 +1,77 @@
+<title>ASD</title>
+{% extends  "catalog/wrapper.html"%}
+{% block content %}
+<div class="container">
+{% if movies %}
+    <div class="card" style="margin-top:10px">
+    <div class="card-body">
+    <center><h1>Категория: {{sort_by_cat}}</h1></center>
+    </div>
+    </div>
+   <div class="row mt-5 justify-content-center">
+    {% for movie in movies%}
+
+        <div class="card card-custom mx-2 mb-3">
+            <center>
+            <a href="/catalog/{{movie.id}}"><img src="/media/{{movie.img}}" style="width: 250px; height: 400px" class="img-thumbnail">
+            <br>
+                {{movie.title}}</a>
+                <br>
+            <small class="text-muted float-right">Год: {{movie.release_date}}</small>
+            <small class="text-muted d-inline">Добавлено {{movie.pub_date|date:"d.m.Y в H:i"}}</small>
+            </center>
+        </div>
+    {% endfor %}
+</div>
+<nav aria-label="..." style="margin-top:10px">
+  <ul class="pagination justify-content-center">
+      {% if per_page.has_previous %}
+      <li class="page-item">
+          <a class="page-link" href="?page=1" tabindex="1">First</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ per_page.previous_page_number }}" tabindex="1">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="" tabindex="1">First</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="" tabindex="-1">Previous</a>
+        </li>
+      {% endif %}
+      {% for per in per_page.paginator.page_range %}
+      {% if per <= per_page.number|add:1 and per >= per_page.number|add:-1 %}
+      {% if per_page.number == per %}
+        <li class="page-item active ">
+          <a class="page-link" href="?page={{ per }}">{{per}} <span class="sr-only">(current)</span></a>
+        </li>
+      {% else %}
+        <li class="page-item ">
+          <a class="page-link" href="?page={{ per }}">{{per}} <span class="sr-only"></span></a>
+        </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {% if per_page.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ per_page.next_page_number }}">Next</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ per_page.paginator.num_pages }}">Last</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="">Next</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="">Last</a>
+        </li>
+      {% endif %}
+  </ul>
+</nav>
+{% else %}
+    <center><h3>Movies will be added soon.</h3></center>
+{% endif %}
+</div>
+{% endblock %}
