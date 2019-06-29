@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'catalog.apps.CatalogConfig',
+    'kinopoiskapi.apps.KinopoiskapiConfig',
 ]
 
 MIDDLEWARE = [
