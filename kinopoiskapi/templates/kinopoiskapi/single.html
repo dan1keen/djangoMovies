@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/mobile.css' %}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kinopoisk</title>
+</head>
+<body>
+<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{details.poster_path}}">
+<h1>{{details.title}}</h1>
+<h1>{{details.homepage}}</h1>
+<h1>{{details.popularity}}</h1>
+<br>
+<br>
+<br>
+<br>
+<h1>{{rus.data.overview}}</h1>
+<br>
+<br>
+<br>
+<br>
+
+<h1>{{details.production_companies}}</h1>
+<h1>{{details.genres}}</h1>
+{% for detail in details.production_companies %}
+<h1>{{detail.name}}</h1>
+{% endfor %}
+{% for credit in credits.cast %}
+<h1>{{credit.character}}</h1>
+<h1>{{credit.name}}</h1>
+{% if credit.profile_path %}
+<img src="https://image.tmdb.org/t/p/w138_and_h175_face{{credit.profile_path}}">
+{% else %}
+<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" style="width: 138px; height: 175px;">
+{% endif %}
+{% endfor %}
+</body>
+</html>

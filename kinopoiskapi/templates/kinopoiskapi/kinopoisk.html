@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kinopoisk</title>
+</head>
+<body>
+{% for p in popular %}
+<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{p.poster_path}}">
+<a href="{{p.id}}/"> <h1>{{p.title}}</h1></a>
+<h1>{{p.overview}}</h1>
+
+
+{% endfor %}
+
+</body>
+</html>
